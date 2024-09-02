@@ -1,0 +1,10 @@
+package com.ch02.sub1;
+
+import java.lang.reflect.Method;
+
+public class Welcome {
+  public void show(){
+      System.out.println("Welcome Spring");
+
+  }
+}
