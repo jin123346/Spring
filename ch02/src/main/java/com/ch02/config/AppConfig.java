@@ -12,6 +12,13 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
     //app 의 Scan config  컨테이너에 등록할 객체들을 지정함
     //이 패키지의 설정파일이됨
+    
+    //객체 생성의 두가지방법 
+    /*
+        1. configuration에서 bean anotation을 이용하여 객체를 생성하는 방법'
+        2. componont 안에서 autoweired를 통해 필드주입, 생성자주입, setter주입 방법으로 객체 생성
+        3. aop를 이용하여
+     */
 
     //Bean을 사용하여, 사용할 객체를 container 에 등록해줌
     @Bean

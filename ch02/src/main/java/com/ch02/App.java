@@ -4,6 +4,7 @@ import com.ch02.config.AppConfig;
 import com.ch02.sub1.Greeting;
 import com.ch02.sub1.Hello;
 import com.ch02.sub1.Welcome;
+import com.ch02.sub2.CPU;
 import com.ch02.sub2.Computer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -59,8 +60,12 @@ public class App
         Greeting greeting = (Greeting) context.getBean("greet");
         greeting.show();
 
+
         Computer computer = (Computer) context.getBean("com");
         computer.show();
+
+     
+
 
     }
 }

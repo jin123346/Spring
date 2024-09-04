@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ch01</groupId>
-  <artifactId>ch01</artifactId>
+  <groupId>com.ch03</groupId>
+  <artifactId>ch03</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>ch01</name>
+  <name>ch03</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -30,7 +30,7 @@
       <version>6.1.12</version>
     </dependency>
 
-
+    <!--  AOP - aspect 추가 -->
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -38,9 +38,12 @@
       <version>6.1.12</version>
     </dependency>
 
-
-
-
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>6.1.12</version>
+    </dependency>
 
 
 
