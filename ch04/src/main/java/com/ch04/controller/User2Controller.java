@@ -49,23 +49,27 @@ public class User2Controller {
 
     /*modify*/
     @GetMapping("/user2/modify")
-    public String modify(@RequestParam("uid") String uid, Model model){
-        System.out.println("uid :"+uid);
+    public String modify(User2DTO dto, Model model){
+        System.out.println("uid :"+dto.getUid());
 
-        User2DTO dto= service.selectUser2(uid);
-        model.addAttribute("user2",dto);
+        User2DTO user2DTO= service.selectUser2(dto.getUid());
+        model.addAttribute("user2",user2DTO);
         return "/user2/modify";
     }
     @PostMapping("/user2/modify")
     public String modify(User2DTO dto){
-        return "/user2/modify";
+        System.out.println(dto);
+        service.updateUser2(dto);
 
+        return "redirect:/user2/list";
     }
 
     /*delete*/
     @GetMapping("/user2/delete")
-    public String delete(String uid){
-        return "/user2/delete";
+    public String delete(@RequestParam("uid") String uid){
+        System.out.println("uid : "+uid);
+        service.deleteUser2(uid);
+        return "redirect:/user2/list";
 
     }
 }

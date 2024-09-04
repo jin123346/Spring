@@ -39,8 +39,23 @@ public class User2DAO {
         String sql = "select * from user2";
         return   jdbcTemplate.query(sql, new User2RowMapper());
     }
-    public void updateUser2(User2DTO dto){}
-    public void deleteUser2(String uid){}
+    public void updateUser2(User2DTO dto){
+        String sql="update user2 set name=?,birth=?,addr=? where uid=?";
+        Object[] params = new Object[]{
+                dto.getName(),
+                dto.getBirth(),
+                dto.getAddr(),
+                dto.getUid()
+        };
+
+        jdbcTemplate.update(sql, params);
+
+    }
+    public void deleteUser2(String uid){
+        String sql  = "delete from user2 where uid=?";
+        jdbcTemplate.update(sql, uid);
+
+    }
 
 
 }
