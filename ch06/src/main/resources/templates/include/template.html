@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template</title>
+</head>
+<body>
+  <header th:fragment="header">  <!-- fragment 지정된 것은 template::header로 된다. -->
+    <p>template::header 입니다.</p>
+  </header>
+  <main>
+    <div class="mainin">
+      <aside th:fragement="aside">
+
+      </aside>
+    </div>
+
+  </main>
+
+  <footer th:fragment="footer">
+    <p>template::footer 입니다.</p>
+  </footer>
+</body>
+</html>
