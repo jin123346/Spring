@@ -19,15 +19,15 @@
         <th>관리</th>
     </tr>
 
-        <tr>
-            <td>${user.uid}</td>
-            <td>${user.name}</td>
-            <td>${user.birth}</td>
-            <td>${user.hp}</td>
-            <td>${user.age}</td>
+        <tr th:each="user:${users}">
+            <td>[[${user.uid}]]</td>
+            <td>[[${user.name}]]</td>
+            <td>[[${user.birth}]]</td>
+            <td>[[${user.hp}]]</td>
+            <td>[[${user.age}]]</td>
             <td>
-                <a th:href="@{/user1/modify?uid=${user.uid}}">수정</a>
-                <a th:href="@{/user1/delete?uid=${user.uid}}">삭제</a>
+                <a th:href="@{/user1/modify(uid=${user.uid})}">수정</a>
+                <a th:href="@{/user1/delete(uid=${user.uid},name=${user.name})}">삭제</a>
             </td>
         </tr>
 

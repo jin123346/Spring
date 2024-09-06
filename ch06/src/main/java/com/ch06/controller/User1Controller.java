@@ -3,6 +3,7 @@ package com.ch06.controller;
 import com.ch06.dto.User1DTO;
 import com.ch06.service.User1Service;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+@Log4j2
 @RequiredArgsConstructor
 @Controller
 public class User1Controller {
@@ -37,8 +39,15 @@ public class User1Controller {
     @GetMapping("/user1/modify")
     public String modify(String uid, Model model){
         User1DTO user1DTO = user1Service.selectUser1(uid);
+        log.info(user1DTO);
         model.addAttribute(user1DTO);
         return "/user1/modify";
+    }
+
+    @PostMapping("/user1/modify")
+    public String modify(User1DTO user1DTO){
+        user1Service.updateUser1(user1DTO);
+        return "redirect:/user1/list";
     }
 
     @GetMapping("/user1/delete")
