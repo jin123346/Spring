@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ch05.dao.User3Mapper">
+
+    <!--id 부분에는 mapper interface의 method네임과 매칭시킴
+        mybatis 쿼리파라미터는 ?이 아니라 #{column name}
+        resultType에 반환값을 적어줘야함(패키지 포함해서)
+        리스트는 적어주지않아도 됨 
+    -->
+
+    <insert id="insertUser3">
+        insert into user3 values (#{uid},#{name},#{birth},#{hp},#{addr});
+    </insert>
+    <select id="selectUser3" resultType="com.ch05.dto.User3DTO">
+        select * from user3 where uid=#{uid};
+    </select>
+    <select id="selectUser3s" resultType="com.ch05.dto.User3DTO">
+        select * from user3  ;
+    </select>
+    <delete id="deleteUser3">
+        delete from user3 where uid=#{uid};
+    </delete>
+    <update id="updateUser3">
+        update user3 set
+                name = #{name},
+                birth = #{birth},
+                hp = #{hp},
+                addr = #{addr}
+            where
+                uid = #{uid};
+    </update>
+
+</mapper>
