@@ -1,0 +1,100 @@
+
+<html>
+<head>
+    <title>User1::list</title>
+</head>
+<body>
+
+<h3>User1 목록</h3>
+
+<a th:href="@{/index}">처음으로</a><br>
+<a th:href="@{/user1/register}">등록</a>
+
+<table e id="user1-table" border="1">
+    <thead>
+    <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>생년월일</th>
+        <th>휴대폰</th>
+        <th>나이</th>
+        <th>관리</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr  th:each="user:${users}">
+        <td>[[${user.uid}]]</td>
+        <td>[[${user.name}]]</td>
+        <td>[[${user.birth}]]</td>
+        <td>[[${user.hp}]]</td>
+        <td>[[${user.age}]]</td>
+        <td>
+            <a th:href="@{/user1/modify(uid=${user.uid})}">수정</a>
+            <a th:href="@{/user1/delete(uid=${user.uid},name=${user.name})}">삭제</a>
+        </td>
+    </tr>
+    </tbody>
+
+
+
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 데이터를 가져올 API URL
+        const apiUrl = '/api/user1/';
+
+        // 데이터를 가져와서 테이블에 채워넣는 함수
+        function fetchUser1List() {
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();  // JSON 데이터로 변환
+                })
+                .then(data => {
+                    // 가져온 데이터를 테이블에 채워넣습니다
+                    const tableBody = document.querySelector("#user1-table tbody");
+                    tableBody.innerHTML = "";  // 테이블 초기화
+
+                    data.forEach(user => {
+                        const row = document.createElement("tr");
+
+                        const uidCell = document.createElement("td");
+                        uidCell.textContent = user.uid;  // UID
+                        row.appendChild(uidCell);
+
+                        const nameCell = document.createElement("td");
+                        nameCell.textContent = user.name;  // 이름
+                        row.appendChild(nameCell);
+
+                        const birthCell = document.createElement("td");
+                        birthCell.textContent = user.birth;  // 이메일
+                        row.appendChild(birthCell);
+
+                        const hpCell = document.createElement("td");
+                        hpCell.textContent = user.hp;  // 이메일
+                        row.appendChild(hpCell);
+
+                        const ageCell = document.createElement("td");
+                        ageCell.textContent = user.age;  // 이메일
+                        row.appendChild(ageCell);
+
+                        // 테이블 본문에 행 추가
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error("There was a problem with the fetch operation:", error);
+                });
+        }
+
+        // 페이지 로드 시 사용자 리스트를 가져옵니다
+        fetchUser1List();
+    });
+
+</script>
+</body>
+</html>
