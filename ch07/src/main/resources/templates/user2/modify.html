@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>modify</title>
+</head>
+<body>
+<h3>User2 수정</h3>
+
+<a th:href="@{/index}">처음으로</a><br>
+<a th:href="@{/user2/list}">목록</a>
+
+
+<form th:action="@{/user2/modify}" method="post">
+    <table border="1">
+        <tr>
+            <td>아이디</td>
+            <td><input type="text" name="uid" th:value="${user2dto.uid}" readonly></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="name" th:value="${user2dto.name}"></td>
+        </tr>
+        <tr>
+            <td>생년월일</td>
+            <td><input type="date" name="birth" th:value="${user2dto.birth}"></td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td><input type="text" name="addr" th:value="${user2dto.addr}"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="right">
+                <input type="submit" value="수정하기">
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+</html>

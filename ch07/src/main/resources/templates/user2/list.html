@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>User2::list</title>
+</head>
+<body>
+<h3>User2 목록</h3>
+
+<a th:href="@{/index}">처음으로</a><br>
+<a th:href="@{/user2/register}">등록</a>
+
+<table border="1">
+    <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>생년월일</th>
+        <th>주소</th>
+        <th>관리</th>
+    </tr>
+    <tr   th:if="${user2s != null}" th:each="user2 : ${user2s}">
+            <td>[[${user2.uid}]]</td>
+            <td>[[${user2.name}]]</td>
+            <td>[[${user2.birth}]]</td>
+            <td>[[${user2.addr}]]</td>
+            <td>
+                <a th:href="@{/user2/modify(uid=${user2.uid})}">수정</a>
+                <a th:href="@{/user2/delete(uid=${user2.uid})}" class="del">삭제</a>
+            </td>
+    </tr>
+    <tr th:if="${user2s ==null || user2s.size()==0}">
+        <td colspan="6">No users found.</td>
+
+    </tr>
+</table>
+</body>
+</html>

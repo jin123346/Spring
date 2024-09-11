@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+<title>User3-List</title>
+
+</head>
+<body>
+	<h3>User3 목록</h3>
+	
+	<a th:href="@{/index}">처음으로</a><br>
+	<a th:href="@{/user3/register}">등록</a>
+	
+	<table border="1">
+		<tr>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>생년월일</th>
+			<th>휴대폰</th>
+			<th>나이</th>
+			<th>관리</th>
+		</tr>
+			<tr th:if="${users !=null }" th:each="user3:${users}">
+				<td>[[${user3.uid}]]</td>
+				<td>[[${user3.name}]]</td>
+				<td>[[${user3.birth}]]</td>
+				<td>[[${user3.hp}]]</td>
+				<td>[[${user3.addr}]]</td>
+				<td>
+					<a th:href="@{/user3/modify(uid=${user3.uid})}">수정</a>
+					<a th:href="@{/user3/delete(uid=${user3.uid})}" class="del">삭제</a>
+				</td>
+			</tr>
+			<tr th:if="${users ==null || users.size()==0}">
+				<td colspan="6">No users found.</td>
+
+			</tr>
+	</table>
+	
+
+</body>
+</html>
