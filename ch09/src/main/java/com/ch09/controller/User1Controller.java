@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,6 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/api")
 public class User1Controller {
 
     private final User1Service user1Service;
@@ -23,8 +23,8 @@ public class User1Controller {
     @ResponseBody
     @GetMapping("/user1/")
     public List<User1DTO> list(){
-
-        return user1Service.selectUser1s();
+        List<User1DTO> users = user1Service.selectUser1s();
+        return users;
     }
 
     @ResponseBody
@@ -37,7 +37,7 @@ public class User1Controller {
 
     @ResponseBody
     @PostMapping("/user1")
-    public ResponseEntity register(@RequestBody User1DTO userdto){
+    public ResponseEntity register(@Validated @RequestBody User1DTO userdto){
         log.info("User registration: {}", userdto);
         User1DTO savedUser1 = user1Service.insertUser1(userdto);  // 데이터 저장 로직 추가
 
@@ -47,13 +47,13 @@ public class User1Controller {
                .body(savedUser1);
 
     }
-    @ResponseBody
     @PutMapping("/user1/")
     public ResponseEntity modify(@RequestBody User1DTO userdto){
         log.info("User modify: {}", userdto);
         User1DTO modifiedUser1 =  user1Service.updateUser1(userdto);
 
 
+        //responseentity로 변환할 경우 @ResponseBody생략 가능
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(modifiedUser1);
     }
 
