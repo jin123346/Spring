@@ -25,7 +25,7 @@ RestAPI 용 컨트롤러 어노테이션
     private final User2Service user2Service;
 
 
-    @GetMapping("/user2/")
+    @GetMapping("/user2")
     public List<User2DTO> list() {
 
         return user2Service.selectUser2s();
@@ -34,20 +34,21 @@ RestAPI 용 컨트롤러 어노테이션
 
     @GetMapping("/user2/{uid}")
     public User2DTO user(@PathVariable("uid") String uid){
+        log.info("user2!!!1"+uid);
+
         User2DTO user2 = user2Service.selectUser2(uid);
 
         return user2;
     }
 
-    @PostMapping("/user2/")
+    @PostMapping("/user2")
     public ResponseEntity register(@RequestBody User2DTO user2){
-
         User2DTO savedUser2 = user2Service.InsertUser2(user2);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser2);
     }
 
-    @PutMapping("/user2/")
+    @PutMapping("/user2")
     public ResponseEntity modify(@RequestBody User2DTO user2){
 
         User2DTO updateUser2 = user2Service.updateUser2(user2);
@@ -60,6 +61,7 @@ RestAPI 용 컨트롤러 어노테이션
 
     @DeleteMapping("/user2/{uid}")
     public ResponseEntity delete(@PathVariable("uid") String uid){
+        log.info("uid"+uid);
         try{
             user2Service.deleteUser2(uid);
             return ResponseEntity.status(HttpStatus.OK).body("success");

@@ -21,7 +21,7 @@ public class User1Controller {
     private final User1Service user1Service;
 
     @ResponseBody
-    @GetMapping("/user1/")
+    @GetMapping("/user1")
     public List<User1DTO> list(){
         List<User1DTO> users = user1Service.selectUser1s();
         return users;
@@ -30,6 +30,7 @@ public class User1Controller {
     @ResponseBody
     @GetMapping("/user1/{uid}")
     public User1DTO user(@PathVariable("uid") String uid){
+        log.info("uid!!"+uid);
         User1DTO user1 = user1Service.selectUser1(uid);
 
         return user1;
@@ -37,9 +38,9 @@ public class User1Controller {
 
     @ResponseBody
     @PostMapping("/user1")
-    public ResponseEntity register(@Validated @RequestBody User1DTO userdto){
-        log.info("User registration: {}", userdto);
-        User1DTO savedUser1 = user1Service.insertUser1(userdto);  // 데이터 저장 로직 추가
+    public ResponseEntity register(@Validated @RequestBody User1DTO User){
+        log.info("User registration: {}", User);
+        User1DTO savedUser1 = user1Service.insertUser1(User);  // 데이터 저장 로직 추가
 
         //응답객체
        return ResponseEntity
@@ -47,11 +48,12 @@ public class User1Controller {
                .body(savedUser1);
 
     }
-    @PutMapping("/user1/")
-    public ResponseEntity modify(@RequestBody User1DTO userdto){
-        log.info("User modify: {}", userdto);
-        User1DTO modifiedUser1 =  user1Service.updateUser1(userdto);
 
+    @ResponseBody
+    @PutMapping("/user1")
+    public ResponseEntity modify(@RequestBody User1DTO User){
+        log.info("User modify: {}", User);
+        User1DTO modifiedUser1 =  user1Service.updateUser1(User);
 
         //responseentity로 변환할 경우 @ResponseBody생략 가능
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(modifiedUser1);
